@@ -687,3 +687,11 @@ ALTER TABLE `form_clinical_notes` ADD `note_related_to` TEXT COMMENT 'Reference 
 #IfMissingColumn form_care_plan note_related_to
 ALTER TABLE `form_care_plan` ADD `note_related_to` TEXT COMMENT 'Reference to lists id for note relationships(json)';
 #EndIf
+
+#IfMissingColumn form_vitals uuid
+ALTER TABLE `form_vitals` ADD `uuid` binary(16) DEFAULT NULL AFTER `id`;
+#EndIf
+
+#IfMissingColumn uuid_mapping resource_path
+ALTER TABLE `uuid_mapping` ADD `resource_path` VARCHAR(255) DEFAULT NULL;
+#EndIf
