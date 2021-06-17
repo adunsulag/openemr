@@ -692,6 +692,13 @@ ALTER TABLE `form_care_plan` ADD `note_related_to` TEXT COMMENT 'Reference to li
 ALTER TABLE `form_vitals` ADD `uuid` binary(16) DEFAULT NULL AFTER `id`;
 #EndIf
 
+#IfNotIndex form_vitals uuid
+CREATE UNIQUE INDEX `uuid` ON `form_vitals` (`uuid`);
+#EndIf
+
+#IfUuidNeedUpdate form_vitals
+#EndIf
+
 #IfMissingColumn uuid_mapping resource_path
 ALTER TABLE `uuid_mapping` ADD `resource_path` VARCHAR(255) DEFAULT NULL;
 #EndIf
@@ -712,6 +719,13 @@ ALTER TABLE `form_vitals` ADD `ped_head_circ` FLOAT(4,1) NULL DEFAULT '0.00'
 ALTER TABLE `history_data` ADD `uuid` binary(16) DEFAULT NULL AFTER `id`;
 #EndIf
 
+#IfNotIndex history_data uuid
+CREATE UNIQUE INDEX `uuid` ON `history_data` (`uuid`);
+#EndIf
+
+#IfUuidNeedUpdate history_data
+#EndIf
+
 #IfMissingColumn form_clinical_notes form_id
 ALTER TABLE `form_clinical_notes` CHANGE `id` `form_id` bigint(20) NOT NULL;
 ALTER TABLE `form_clinical_notes` ADD COLUMN `id` bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
@@ -719,4 +733,11 @@ ALTER TABLE `form_clinical_notes` ADD COLUMN `id` bigint(20) NOT NULL AUTO_INCRE
 
 #IfMissingColumn form_clinical_notes uuid
 ALTER TABLE `form_clinical_notes` ADD `uuid` binary(16) DEFAULT NULL AFTER `id`;
+#EndIf
+
+#IfNotIndex form_clinical_notes uuid
+CREATE UNIQUE INDEX `uuid` ON `form_clinical_notes` (`uuid`);
+#EndIf
+
+#IfUuidNeedUpdate form_clinical_notes
 #EndIf

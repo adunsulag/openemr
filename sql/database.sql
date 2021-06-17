@@ -1750,7 +1750,8 @@ CREATE TABLE `form_clinical_notes` (
     `description` text,
     `external_id` VARCHAR(30) DEFAULT NULL,
     `clinical_notes_type` varchar(100) DEFAULT NULL,
-    `note_related_to` text
+    `note_related_to` text,
+    UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB;
 
 -- --------------------------------------------------------
@@ -2195,7 +2196,8 @@ CREATE TABLE `form_vitals` (
   `ped_bmi` float(4,1) default '0.0',
   `ped_head_circ` float(4,1) default '0.0',
   PRIMARY KEY  (`id`),
-  KEY `pid` (`pid`)
+  KEY `pid` (`pid`),
+  UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
@@ -2753,7 +2755,8 @@ CREATE TABLE `history_data` (
   `userarea11` text,
   `userarea12` text,
   PRIMARY KEY  (`id`),
-  KEY `pid` (`pid`)
+  KEY `pid` (`pid`),
+  UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
