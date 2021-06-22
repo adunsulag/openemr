@@ -2756,7 +2756,7 @@ CREATE TABLE `history_data` (
   `userarea12` text,
   PRIMARY KEY  (`id`),
   KEY `pid` (`pid`),
-  UNIQUE KEY `uuid` (`uuid`)
+  KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------

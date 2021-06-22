@@ -720,7 +720,9 @@ ALTER TABLE `history_data` ADD `uuid` binary(16) DEFAULT NULL AFTER `id`;
 #EndIf
 
 #IfNotIndex history_data uuid
-CREATE UNIQUE INDEX `uuid` ON `history_data` (`uuid`);
+-- History table uses a historical record data pattern where the same record is duplicated multiple times to retain
+-- history, this makes it so the record has the same uuid.  We only index the record instead of keeping it UNIQUE
+CREATE INDEX `uuid` ON `history_data` (`uuid`);
 #EndIf
 
 #IfUuidNeedUpdate history_data
@@ -740,4 +742,15 @@ CREATE UNIQUE INDEX `uuid` ON `form_clinical_notes` (`uuid`);
 #EndIf
 
 #IfUuidNeedUpdate form_clinical_notes
+#EndIf
+
+#IfMissingColumn documents uuid
+ALTER TABLE `documents` ADD `uuid` binary(16) DEFAULT NULL AFTER `id`;
+#EndIf
+
+#IfNotIndex documents uuid
+CREATE UNIQUE INDEX `uuid` ON `documents` (`uuid`);
+#EndIf
+
+#IfUuidNeedUpdate documents
 #EndIf
